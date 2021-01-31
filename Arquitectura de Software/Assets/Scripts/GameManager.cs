@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager _instance;
+    public static GameManager _singleton;
     [Header("variables")]
     public int monedas= 0;
     public int tiempoLimite;
     
     void Awake(){
 
-        if (_instance == null){
+        if (_singleton == null){
 
-            _instance = this;
+            _singleton = this;
             DontDestroyOnLoad(this.gameObject);
     
             //Rest of your Awake code
@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+    
     }
 
     // Update is called once per frame
