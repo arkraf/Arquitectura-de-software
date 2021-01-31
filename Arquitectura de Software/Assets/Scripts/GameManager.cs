@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private static GameManager _instance;
+    public static GameManager _instance;
+    [Header("variables")]
+    public int monedas= 0;
+    public int tiempoLimite;
     
     void Awake(){
 
@@ -30,4 +33,6 @@ public class GameManager : MonoBehaviour
     {
         
     }
+
+
 }
