@@ -270,9 +270,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemigoPrefab: {fileID: 3287221844509045700, guid: 1c2e7b89f0d711546a6b4cd1c44de550, type: 3}
-  Spawn: {fileID: 2342587935362619050}
-  tiempoSpawn: 10
+  SpawnEnemigo: {fileID: 2342587935362619050}
+  tiempoSpawn: 20
   tiempo: 0
+  BoolEnemigo: 1
+  Spawns: []
+  MonedaPrefab: {fileID: 0}
+  Seleccion: {fileID: 0}
+  SpawnSeleccionado: 0
+  BoolMoneda: 0
 --- !u!1 &8179108918315440586
 GameObject:
   m_ObjectHideFlags: 0

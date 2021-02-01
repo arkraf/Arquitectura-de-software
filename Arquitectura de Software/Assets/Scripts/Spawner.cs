@@ -9,23 +9,35 @@ public class Spawner : MonoBehaviour
     public GameObject SpawnEnemigo;
 
     [Header("variables Spawn De enemigos")]
-    [SerializeField]private float tiempoSpawn =10f;
+
+    [SerializeField]private float tiempoSpawn =20f;
     [SerializeField]private float tiempo =0;
+    [SerializeField]private bool BoolEnemigo;
 
     [Header("variables Spawn De monedas")]
-    public List<GameObject> listaSpawns;
+    public List<GameObject> Spawns = new List<GameObject>();
+    [SerializeField]private GameObject MonedaPrefab;
+    [SerializeField]private GameObject Seleccion;
+    [SerializeField]private int SpawnSeleccionado = 0; 
+    [SerializeField]private bool BoolMoneda;
     ObjectPooling objectPooler;
 
     // Start is called before the first frame update
     void Start()
     {
         objectPooler = ObjectPooling.llamada;
+        if(BoolMoneda == true)
+        {
+          SpawnerMonedas();
+        }
+        
 
     }
     // Update is called once per frame
     void Update()
     {
-
+      if(BoolEnemigo == true)
+      {
         //Aqui ocurre el spawn de los enemigos ya generados en una pool.
         for(int i = 0;i < tiempoSpawn;i++)
         {          
@@ -37,8 +49,20 @@ public class Spawner : MonoBehaviour
            tiempo = 0;
           }        
         }
-        //Aqui ocurre el spawn de las monedas ya generados en una pool.
-        //objectPooler.SpawnFromPool("Coin", Spawn.transform.position, Quaternion.identity);
+      }
+        
+        
+
+        
+    }
+    //Aqui ocurre el spawn de las monedas ya generados en una pool.
+    public void SpawnerMonedas()
+    {
+      SpawnSeleccionado = Random.Range(0,9);
+      Seleccion = Spawns[SpawnSeleccionado].gameObject;
+
+      objectPooler.SpawnFromPool("Coin",Seleccion.transform.position, Quaternion.identity);
+      
     }
 
     
