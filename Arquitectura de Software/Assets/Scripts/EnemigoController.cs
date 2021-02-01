@@ -6,31 +6,38 @@ using UnityEngine.AI;
 
 public class EnemigoController : MonoBehaviour
 {
+    //Declaramos las variables necesarias para que el enemigo se mueva
     NavMeshAgent agent;
     GameObject target;
-
+    //Asignamos los valores iniciales necesarios
     void Awake()
     {
       agent = GetComponent<NavMeshAgent>();
-      target =GameObject.FindGameObjectWithTag("Player");
-      agent.SetDestination(target.transform.position);
-
+      target =GameObject.FindGameObjectWithTag("Player"); 
     }
-
-    // Start is called before the first frame update
+    //Declaramos cuando debe desactivarse el enemigo
     void Start()
     {
-        Invoke("Muerte", 20f);
+        Invoke("Muerte", 5f);
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
+      //comprobamos si el jugador esta vivo y actualizamos el objetivo de los enemigos
+      if(GameManager._singleton.PlayerVivo ==true)
        agent.SetDestination(target.transform.position);
         
     }
-
-    void Muerte()
+    //comprobamos la collision del enemigo con el jugador
+    public void OnTriggerEnter(Collider other)
+    {
+      if(other.tag ==("Player"))
+      {
+        GameManager._singleton.muerte();
+      }
+    }
+    //esta funcion desactiva el enemigo devolviendolo a la pool de enemigos
+    public void Muerte()
     {
       gameObject.SetActive(false);
     }

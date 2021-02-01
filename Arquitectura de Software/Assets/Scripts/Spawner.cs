@@ -4,66 +4,30 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    //declaramos las variables necesarias para el spwan de enemigos
     [Header("gameObjects")]
-    public GameObject EnemigoPrefab;
     public GameObject SpawnEnemigo;
-
+    
     [Header("variables Spawn De enemigos")]
-
-    [SerializeField]private float tiempoSpawn =20f;
-    [SerializeField]private float tiempo =0;
-    [SerializeField]private bool BoolEnemigo;
-
-    [Header("variables Spawn De monedas")]
-    public List<GameObject> Spawns = new List<GameObject>();
-    [SerializeField]private GameObject MonedaPrefab;
-    [SerializeField]private GameObject Seleccion;
-    [SerializeField]private int SpawnSeleccionado = 0; 
-    [SerializeField]private bool BoolMoneda;
+    [SerializeField]private float tiempoSpawn;
+    [SerializeField]private float tiempo;
     ObjectPooling objectPooler;
-
-    // Start is called before the first frame update
+    //Activamos los elementos basicos que deben estar activos desde el inicio
     void Start()
     {
-        objectPooler = ObjectPooling.llamada;
-        if(BoolMoneda == true)
-        {
-          SpawnerMonedas();
-        }
-        
-
+        objectPooler = ObjectPooling.llamada;                       
     }
-    // Update is called once per frame
+    //llevamos el registro del tiempo que pasa y comprobamos cuando debe activarse los enemigos
     void Update()
-    {
-      if(BoolEnemigo == true)
-      {
-        //Aqui ocurre el spawn de los enemigos ya generados en una pool.
-        for(int i = 0;i < tiempoSpawn;i++)
-        {          
-          tiempo += 1*Time.deltaTime;
-          if(tiempo >= tiempoSpawn)
-          {         
-           //esta linea es la que activa al enemigo del pool          
-           objectPooler.SpawnFromPool("Enemigo", SpawnEnemigo.transform.position, Quaternion.identity);
-           tiempo = 0;
-          }        
-        }
-      }
-        
-        
-
-        
-    }
-    //Aqui ocurre el spawn de las monedas ya generados en una pool.
-    public void SpawnerMonedas()
-    {
-      SpawnSeleccionado = Random.Range(0,9);
-      Seleccion = Spawns[SpawnSeleccionado].gameObject;
-
-      objectPooler.SpawnFromPool("Coin",Seleccion.transform.position, Quaternion.identity);
-      
-    }
-
-    
+    {     
+       //Aqui ocurre el spawn de los enemigos ya generados en una pool.               
+        tiempo +=Time.deltaTime;
+        //comprobamos si debe activarse el enemigo
+        if(tiempo >= tiempoSpawn)
+        {         
+          //esta linea es la que activa al enemigo del pool          
+          objectPooler.SpawnFromPool("Enemigo", SpawnEnemigo.transform.position, Quaternion.identity);
+          tiempo = 0;
+        }                  
+    }      
 }
