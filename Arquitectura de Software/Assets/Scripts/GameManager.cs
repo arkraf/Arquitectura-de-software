@@ -55,8 +55,7 @@ public class GameManager : MonoBehaviour
         if(PlayerVivo==true)
         {
              //aqui actualizamos el tiempo cada segundo
-            tiempoActual-= Time.deltaTime;
-            ContadorTiempo.text =("Tiempo:")+ tiempoActual.ToString("f0");
+            timer();
 
             //comprobamos si se acaba el tiempo, causando asi la derrota
             if(tiempoActual <=0)
@@ -71,5 +70,11 @@ public class GameManager : MonoBehaviour
         Destroy(Player.gameObject);
         PlayerVivo = false;
         FinDeJuego.text = ("Has muerto");
+    }
+    //esta función cuenta el tiempo que pasa
+    public void timer()
+    {
+        tiempoActual-= Time.deltaTime;
+        ContadorTiempo.text =("Tiempo:")+ tiempoActual.ToString("f0");
     }
 }

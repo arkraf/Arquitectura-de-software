@@ -4136,7 +4136,7 @@ MonoBehaviour:
   monedas: 0
   ContadorMonedas: {fileID: 209802548}
   monedasActivas: 0
-  tiempoLimite: 30
+  tiempoLimite: 10
   tiempoActual: 0
   ContadorTiempo: {fileID: 144917668}
   Player: {fileID: 0}

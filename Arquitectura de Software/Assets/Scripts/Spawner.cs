@@ -25,9 +25,14 @@ public class Spawner : MonoBehaviour
         //comprobamos si debe activarse el enemigo
         if(tiempo >= tiempoSpawn)
         {         
-          //esta linea es la que activa al enemigo del pool          
+          Spawn();
+        }                  
+    }
+    public void Spawn()
+    {
+        //esta linea es la que activa al enemigo del pool          
           objectPooler.SpawnFromPool("Enemigo", SpawnEnemigo.transform.position, Quaternion.identity);
           tiempo = 0;
-        }                  
+
     }      
 }
